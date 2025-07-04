@@ -1,0 +1,145 @@
+// Fantakombat Database Schema
+// This schema defines the data structure for the Fantakombat fit&box game
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User model - handles both 'insegnante' and 'iscritto' roles
+model User {
+  id                      String                   @id @default(cuid())
+  email                   String                   @unique
+  password                String
+  name                    String
+  role                    Role                     @default(ISCRITTO)
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  academicYearEnrollments AcademicYearEnrollment[]
+  ownedCourses            Course[]                 @relation("CourseOwner")
+  assignedScores          Score[]                  @relation("AssignedBy")
+  scores                  Score[]
+  sessions                Session[]
+
+  @@map("users")
+}
+
+// Session model for Lucia Auth
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+// Course model - represents a course created by a teacher
+model Course {
+  id            String         @id @default(cuid())
+  name          String
+  description   String?
+  ownerId       String
+  isActive      Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  academicYears AcademicYear[]
+  owner         User           @relation("CourseOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("courses")
+}
+
+// Academic Year model - represents a year within a course
+model AcademicYear {
+  id          String                   @id @default(cuid())
+  name        String
+  courseId    String
+  startDate   DateTime
+  endDate     DateTime?
+  isActive    Boolean                  @default(true)
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  enrollments AcademicYearEnrollment[]
+  course      Course                   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons     Lesson[]
+
+  @@unique([courseId, name])
+  @@map("academic_years")
+}
+
+// Academic Year Enrollment model - tracks which students are enrolled in which academic years
+model AcademicYearEnrollment {
+  id             String       @id @default(cuid())
+  userId         String
+  academicYearId String
+  enrolledAt     DateTime     @default(now())
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, academicYearId])
+  @@map("academic_year_enrollments")
+}
+
+// Action model - defines bonus/malus actions that affect points
+model Action {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  description String?
+  points      Int
+  type        ActionType
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  scores      Score[]
+
+  @@map("actions")
+}
+
+// Lesson model - represents individual fit&box lessons
+model Lesson {
+  id             String       @id @default(cuid())
+  academicYearId String
+  date           DateTime
+  title          String?
+  description    String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Cascade)
+  scores         Score[]
+
+  @@map("lessons")
+}
+
+// Score model - tracks points assigned to users for specific actions in lessons
+model Score {
+  id         String   @id @default(cuid())
+  userId     String
+  actionId   String
+  lessonId   String
+  assignedBy String
+  points     Int
+  notes      String?
+  createdAt  DateTime @default(now())
+  assigner   User     @relation("AssignedBy", fields: [assignedBy], references: [id], onDelete: Cascade)
+  lesson     Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  action     Action   @relation(fields: [actionId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("scores")
+}
+
+// Enums
+enum Role {
+  INSEGNANTE
+  ISCRITTO
+}
+
+enum ActionType {
+  BONUS
+  MALUS
+}
