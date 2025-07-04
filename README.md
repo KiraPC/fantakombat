@@ -151,7 +151,7 @@ The application uses a design system based on TailwindCSS with:
 
 1. **Prepare the project**
    ```bash
-   npm run build  # Test local build
+   npm run vercel-build  # Test Vercel-specific build
    ```
 
 2. **Setup production database**
@@ -172,6 +172,13 @@ The application uses a design system based on TailwindCSS with:
    - `DATABASE_URL`: Production database URL
    - `AUTH_SECRET`: Secure secret key (generate with `openssl rand -base64 32`)
    - `NODE_ENV`: "production"
+
+5. **Initialize database**
+   ```bash
+   # Set SEED_DATABASE=true in Vercel environment for first deploy
+   npx prisma db push
+   npm run db:seed
+   ```
 
 📖 **Complete guide**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
 

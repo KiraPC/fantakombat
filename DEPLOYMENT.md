@@ -135,6 +135,13 @@ vercel --prod rollback
 - **Database connection**: Verify DATABASE_URL
 - **Auth errors**: Generate new AUTH_SECRET
 - **Prisma errors**: Run `npx prisma generate`
+- **Prisma outdated client on Vercel**: Use `npm run vercel-build` or ensure `prisma generate` runs in build process
+
+### Prisma on Vercel specific issues
+If you see "Prisma has detected that this project was built on Vercel, which caches dependencies":
+1. Make sure `vercel-build` script exists in package.json
+2. Verify vercel.json uses the correct buildCommand
+3. Check that `prisma generate` runs before build
 
 ### Pre-deploy test
 ```bash

@@ -1,0 +1,37 @@
+# Development files
+.env.local
+.env.development
+.env.test
+
+# Database files
+dev.db*
+*.db
+
+# Node modules (handled by Vercel)
+node_modules
+
+# Build artifacts (rebuilt on Vercel)
+.svelte-kit
+build
+
+# IDE files
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Documentation (optional - remove if you want docs deployed)
+README.md
+DEPLOYMENT.md
+DEPLOYMENT_VERCEL.md
+docs/
+
+# Scripts
+scripts/
