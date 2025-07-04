@@ -229,25 +229,26 @@
       </div>
     </div>
     
-    <!-- Change Password Section -->
-    <div class="px-4 py-6 sm:px-0">
-      <div class="max-w-2xl mx-auto">
-        {#if !showChangePasswordForm}
-          <div class="text-center">
-            <button 
-              type="button"
-              class="btn btn-secondary inline-flex items-center space-x-2 px-6 py-3"
-              on:click={() => showChangePasswordForm = true}
-            >
-              <span>🔐</span>
-              <span>Cambia Password</span>
-            </button>
-          </div>
-        {:else}
-          <div class="card">
-            <div class="card-header">
-              <h3 class="text-lg font-medium text-gray-900">Cambia Password</h3>
+    <!-- Change Password Section (only for teachers) -->
+    {#if user.role === 'INSEGNANTE'}
+      <div class="px-4 py-6 sm:px-0">
+        <div class="max-w-2xl mx-auto">
+          {#if !showChangePasswordForm}
+            <div class="text-center">
+              <button 
+                type="button"
+                class="btn btn-secondary inline-flex items-center space-x-2 px-6 py-3"
+                on:click={() => showChangePasswordForm = true}
+              >
+                <span>🔐</span>
+                <span>Cambia Password</span>
+              </button>
             </div>
+          {:else}
+            <div class="card">
+              <div class="card-header">
+                <h3 class="text-lg font-medium text-gray-900">Cambia Password</h3>
+              </div>
             <div class="card-body">
               {#if form?.success}
                 <div class="alert alert-success mb-4">
@@ -341,6 +342,7 @@
         {/if}
       </div>
     </div>
+    {/if}
     
     <!-- Action Buttons -->
     <div class="px-4 py-6 sm:px-0">

@@ -14,11 +14,32 @@ export const actions: Actions = {
     const role = formData.get('role')?.toString() as 'INSEGNANTE' | 'ISCRITTO';
     const courseName = formData.get('courseName')?.toString(); // For teachers
     
-    // Validate input
-    if (!name || !email || !password || !confirmPassword) {
+    // Validate basic input
+    if (!name || !email || !role) {
       return fail(400, {
-        error: 'Tutti i campi sono obbligatori.',
+        error: 'Nome, email e ruolo sono obbligatori.',
       });
+    }
+    
+    // Validate password only for teachers
+    if (role === 'INSEGNANTE') {
+      if (!password || !confirmPassword) {
+        return fail(400, {
+          error: 'Password e conferma password sono obbligatori per gli insegnanti.',
+        });
+      }
+      
+      if (password.length < 6) {
+        return fail(400, {
+          error: 'La password deve essere di almeno 6 caratteri.',
+        });
+      }
+      
+      if (password !== confirmPassword) {
+        return fail(400, {
+          error: 'Le password non coincidono.',
+        });
+      }
     }
     
     // Validate course name for teachers
@@ -36,19 +57,6 @@ export const actions: Actions = {
       });
     }
     
-    // Validate password
-    if (password.length < 6) {
-      return fail(400, {
-        error: 'La password deve essere di almeno 6 caratteri.',
-      });
-    }
-    
-    if (password !== confirmPassword) {
-      return fail(400, {
-        error: 'Le password non coincidono.',
-      });
-    }
-    
     // Validate role
     if (!['INSEGNANTE', 'ISCRITTO'].includes(role)) {
       return fail(400, {
@@ -57,8 +65,8 @@ export const actions: Actions = {
     }
     
     try {
-      // Create user
-      const user = await createUser(email, password, name, role);
+      // Create user - only teachers need password
+      const user = await createUser(email, role === 'INSEGNANTE' ? (password || null) : null, name, role);
       
       // If the user is a teacher, create a course
       if (role === 'INSEGNANTE') {

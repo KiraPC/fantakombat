@@ -66,7 +66,6 @@ export const actions: Actions = {
     const data = await request.formData();
     const name = data.get('name') as string;
     const email = data.get('email') as string;
-    const password = data.get('password') as string;
 
     // Validation
     if (!name || name.trim().length === 0) {
@@ -75,10 +74,6 @@ export const actions: Actions = {
 
     if (!email || email.trim().length === 0) {
       return fail(400, { message: 'L\'email è obbligatoria' });
-    }
-
-    if (!password || password.length < 6) {
-      return fail(400, { message: 'La password deve essere di almeno 6 caratteri' });
     }
 
     // Check if email already exists
@@ -91,18 +86,17 @@ export const actions: Actions = {
     }
 
     try {
-      const hashedPassword = await hashPassword(password);
-
+      // Students don't need passwords
       await db.user.create({
         data: {
           name: name.trim(),
           email: email.trim().toLowerCase(),
-          password: hashedPassword,
+          password: null, // Students are passwordless
           role: 'ISCRITTO'
         }
       });
 
-      return { success: true, message: 'Utente creato con successo' };
+      return { success: true, message: 'Studente creato con successo' };
     } catch (err) {
       console.error('Error creating user:', err);
       return fail(500, { message: 'Errore nella creazione dell\'utente' });

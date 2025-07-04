@@ -177,22 +177,18 @@
               </div>
               
               <div class="md:col-span-2">
-                <label for="password" class="block text-sm font-medium text-gray-700">
-                  Password {editingUser ? '(lascia vuoto per non modificare)' : ''}
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  bind:value={password}
-                  required={!editingUser}
-                  minlength="6"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                  placeholder="Almeno 6 caratteri"
-                />
-                <p class="mt-1 text-xs text-gray-500">
-                  {editingUser ? 'La password deve essere di almeno 6 caratteri se specificata' : 'La password deve essere di almeno 6 caratteri'}
-                </p>
+                <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+                  <div class="flex">
+                    <div class="flex-shrink-0">
+                      <span class="text-blue-400 text-xl">ℹ️</span>
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-sm text-blue-800">
+                        Gli studenti non necessitano di password. Potranno accedere utilizzando solo l'email per visualizzare i loro punteggi.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             

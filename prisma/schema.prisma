@@ -14,7 +14,7 @@ datasource db {
 model User {
   id                      String                   @id @default(cuid())
   email                   String                   @unique
-  password                String
+  password                String?                  // Optional for students (passwordless)
   name                    String
   role                    Role                     @default(ISCRITTO)
   createdAt               DateTime                 @default(now())

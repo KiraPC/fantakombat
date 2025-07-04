@@ -30,7 +30,7 @@ async function main() {
 
   console.log('✅ Teacher created:', teacher.email);
 
-  // Create student users
+  // Create student users (passwordless)
   const students = [
     { name: 'Alice Boxer', email: 'alice@student.com' },
     { name: 'Bob Fighter', email: 'bob@student.com' },
@@ -38,8 +38,6 @@ async function main() {
     { name: 'Diana Warrior', email: 'diana@student.com' },
     { name: 'Eva Champion', email: 'eva@student.com' },
   ];
-
-  const studentPassword = await hashPassword('password123');
   
   for (const student of students) {
     await prisma.user.upsert({
@@ -48,7 +46,7 @@ async function main() {
       create: {
         email: student.email,
         name: student.name,
-        password: studentPassword,
+        password: null, // Students are passwordless
         role: 'ISCRITTO',
       },
     });
@@ -196,11 +194,12 @@ async function main() {
   console.log('');
   console.log('🔐 Login credentials:');
   console.log('Teacher: teacher@fantakombat.com / password123');
-  console.log('Student: alice@student.com / password123');
-  console.log('Student: bob@student.com / password123');
-  console.log('Student: charlie@student.com / password123');
-  console.log('Student: diana@student.com / password123');
-  console.log('Student: eva@student.com / password123');
+  console.log('Students (passwordless - login with email only):');
+  console.log('Student: alice@student.com');
+  console.log('Student: bob@student.com');
+  console.log('Student: charlie@student.com');
+  console.log('Student: diana@student.com');
+  console.log('Student: eva@student.com');
 }
 
 main()

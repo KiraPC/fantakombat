@@ -8,6 +8,7 @@
   let loading = false;
   let email = '';
   let password = '';
+  let loginMode: 'choose' | 'teacher' | 'student' = 'choose';
   
   const handleSubmit: SubmitFunction = () => {
     loading = true;
@@ -16,6 +17,12 @@
       loading = false;
     };
   };
+  
+  function resetForm() {
+    email = '';
+    password = '';
+    loginMode = 'choose';
+  }
 </script>
 
 <svelte:head>
@@ -35,91 +42,203 @@
         Accedi a Fantakombat
       </h2>
       <p class="mt-2 text-sm text-gray-600">
-        Entra nel gioco e inizia a guadagnare punti!
+        {#if loginMode === 'choose'}
+          Scegli il tuo tipo di accesso
+        {:else if loginMode === 'teacher'}
+          Accesso Insegnante
+        {:else}
+          Accesso Studente
+        {/if}
       </p>
     </div>
-    
-    <!-- Login Form -->
-    <form 
-      class="mt-8 space-y-6" 
-      method="post" 
-      action="?/login"
-      use:enhance={handleSubmit}
-    >
-      <div class="space-y-4">
-        <!-- Email Field -->
-        <div>
-          <label for="email" class="form-label">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            bind:value={email}
-            class="form-input"
-            placeholder="La tua email"
-          />
-        </div>
-        
-        <!-- Password Field -->
-        <div>
-          <label for="password" class="form-label">
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            bind:value={password}
-            class="form-input"
-            placeholder="La tua password"
-          />
+
+    <!-- Error Message -->
+    {#if form?.error}
+      <div class="bg-red-50 border border-red-200 rounded-md p-4">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <span class="text-red-400 text-xl">❌</span>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm text-red-800">{form.error}</p>
+          </div>
         </div>
       </div>
-      
-      <!-- Error Message -->
-      {#if form?.error}
-        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+    {/if}
+
+    <!-- Login Mode Selection -->
+    {#if loginMode === 'choose'}
+      <div class="space-y-4">
+        <div class="grid grid-cols-1 gap-4">
+          <button
+            on:click={() => loginMode = 'teacher'}
+            class="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
+          >
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <span class="text-xl">👨‍🏫</span>
+            </span>
+            Sono un Insegnante
+          </button>
+          
+          <button
+            on:click={() => loginMode = 'student'}
+            class="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-secondary-600 hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-colors duration-200"
+          >
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <span class="text-xl">👨‍🎓</span>
+            </span>
+            Sono uno Studente
+          </button>
+        </div>
+      </div>
+    {/if}
+
+    <!-- Teacher Login Form -->
+    {#if loginMode === 'teacher'}
+      <form 
+        class="mt-8 space-y-6" 
+        method="post" 
+        action="?/teacherLogin"
+        use:enhance={handleSubmit}
+      >
+        <div class="space-y-4">
+          <!-- Email Field -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              bind:value={email}
+              class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+              placeholder="La tua email"
+            />
+          </div>
+
+          <!-- Password Field -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              bind:value={password}
+              class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+              placeholder="La tua password"
+            />
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button
+            type="button"
+            on:click={resetForm}
+            class="text-sm text-gray-600 hover:text-gray-900"
+          >
+            ← Torna indietro
+          </button>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            disabled={loading}
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+          >
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <span class="text-primary-500 group-hover:text-primary-400">
+                {loading ? '⏳' : '🔐'}
+              </span>
+            </span>
+            {loading ? 'Accesso in corso...' : 'Accedi come Insegnante'}
+          </button>
+        </div>
+      </form>
+    {/if}
+
+    <!-- Student Login Form -->
+    {#if loginMode === 'student'}
+      <form 
+        class="mt-8 space-y-6" 
+        method="post" 
+        action="?/studentLogin"
+        use:enhance={handleSubmit}
+      >
+        <div class="space-y-4">
+          <!-- Email Field -->
+          <div>
+            <label for="student-email" class="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              id="student-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              bind:value={email}
+              class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 focus:z-10 sm:text-sm"
+              placeholder="La tua email"
+            />
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
           <div class="flex">
             <div class="flex-shrink-0">
-              <span class="text-red-400 text-xl">⚠️</span>
+              <span class="text-blue-400 text-xl">ℹ️</span>
             </div>
             <div class="ml-3">
-              <p class="text-sm text-red-700">{form.error}</p>
+              <p class="text-sm text-blue-800">
+                Come studente, ti basta inserire la tua email per accedere e vedere la tua classifica e i tuoi punti!
+              </p>
             </div>
           </div>
         </div>
-      {/if}
-      
-      <!-- Submit Button -->
-      <div>
-        <button
-          type="submit"
-          disabled={loading}
-          class="w-full btn btn-primary flex justify-center py-3 px-4 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {#if loading}
-            <div class="spinner h-5 w-5 mr-2"></div>
-            Accedendo...
-          {:else}
-            <span class="mr-2">🔐</span>
-            Accedi
-          {/if}
-        </button>
-      </div>
-      
-      <!-- Register Link -->
-      <div class="text-center">
-        <p class="text-sm text-gray-600">
-          Non hai un account?
-          <a href="/register" class="font-medium text-primary-600 hover:text-primary-500">
-            Registrati qui
-          </a>
-        </p>
-      </div>
-    </form>
+
+        <div class="flex items-center justify-between">
+          <button
+            type="button"
+            on:click={resetForm}
+            class="text-sm text-gray-600 hover:text-gray-900"
+          >
+            ← Torna indietro
+          </button>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            disabled={loading}
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-secondary-600 hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+          >
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <span class="text-secondary-500 group-hover:text-secondary-400">
+                {loading ? '⏳' : '🎯'}
+              </span>
+            </span>
+            {loading ? 'Accesso in corso...' : 'Accedi come Studente'}
+          </button>
+        </div>
+      </form>
+    {/if}
+
+    <!-- Register Link -->
+    <div class="text-center mt-6">
+      <p class="text-sm text-gray-600">
+        Non hai un account?
+        <a href="/register" class="font-medium text-primary-600 hover:text-primary-500">
+          Registrati qui
+        </a>
+      </p>
+    </div>
   </div>
 </div>

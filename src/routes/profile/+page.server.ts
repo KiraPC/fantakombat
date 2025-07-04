@@ -100,6 +100,16 @@ export const actions: Actions = {
         return fail(404, { error: 'Utente non trovato' });
       }
 
+      // Check if user has no password (students)
+      if (!user.password) {
+        return fail(400, {
+          error: 'Gli studenti non hanno password. Contatta il tuo insegnante se devi modificare i tuoi dati.',
+          currentPassword,
+          newPassword,
+          confirmPassword
+        });
+      }
+
       // Verify current password
       const isCurrentPasswordValid = await verifyPassword(currentPassword, user.password);
       if (!isCurrentPasswordValid) {

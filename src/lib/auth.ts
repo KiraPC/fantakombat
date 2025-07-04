@@ -113,16 +113,23 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 }
 
 // Create user
-export async function createUser(email: string, password: string, name: string, role: 'INSEGNANTE' | 'ISCRITTO' = 'ISCRITTO') {
-  const hashedPassword = await hashPassword(password);
+export async function createUser(email: string, password: string | null, name: string, role: 'INSEGNANTE' | 'ISCRITTO' = 'ISCRITTO') {
+  const userData: any = {
+    email,
+    name,
+    role,
+  };
+  
+  // Only set password for teachers
+  if (role === 'INSEGNANTE' && password) {
+    userData.password = await hashPassword(password);
+  } else if (role === 'ISCRITTO') {
+    // Students don't have passwords - set to null
+    userData.password = null;
+  }
   
   return prisma.user.create({
-    data: {
-      email,
-      password: hashedPassword,
-      name,
-      role,
-    },
+    data: userData,
     select: {
       id: true,
       email: true,
@@ -150,6 +157,9 @@ export async function getUserByEmail(email: string) {
 export async function authenticateUser(email: string, password: string): Promise<AuthUser | null> {
   const user = await getUserByEmail(email);
   if (!user) return null;
+  
+  // Check if user has no password (students)
+  if (!user.password) return null;
   
   const isValidPassword = await verifyPassword(password, user.password);
   if (!isValidPassword) return null;

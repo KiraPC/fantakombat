@@ -83,38 +83,6 @@
           />
         </div>
         
-        <!-- Password Field -->
-        <div>
-          <label for="password" class="form-label">
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            bind:value={password}
-            class="form-input"
-            placeholder="Scegli una password"
-          />
-        </div>
-        
-        <!-- Confirm Password Field -->
-        <div>
-          <label for="confirmPassword" class="form-label">
-            Conferma password
-          </label>
-          <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            required
-            bind:value={confirmPassword}
-            class="form-input"
-            placeholder="Ripeti la password"
-          />
-        </div>
-        
         <!-- Role Selection -->
         <div>
           <label for="role" class="form-label">
@@ -126,10 +94,43 @@
             bind:value={role}
             class="form-input"
           >
-            <option value="ISCRITTO">Iscritto</option>
+            <option value="ISCRITTO">Studente</option>
             <option value="INSEGNANTE">Insegnante</option>
           </select>
         </div>
+        
+        <!-- Password Fields (only for teachers) -->
+        {#if role === 'INSEGNANTE'}
+          <div>
+            <label for="password" class="form-label">
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              bind:value={password}
+              class="form-input"
+              placeholder="Scegli una password"
+            />
+          </div>
+          
+          <div>
+            <label for="confirmPassword" class="form-label">
+              Conferma password
+            </label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              required
+              bind:value={confirmPassword}
+              class="form-input"
+              placeholder="Ripeti la password"
+            />
+          </div>
+        {/if}
         
         <!-- Course Name Field (only for teachers) -->
         {#if role === 'INSEGNANTE'}
@@ -149,6 +150,22 @@
             <p class="mt-1 text-sm text-gray-500">
               Inserisci il nome del corso che vuoi creare
             </p>
+          </div>
+        {/if}
+        
+        <!-- Info message for students -->
+        {#if role === 'ISCRITTO'}
+          <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <span class="text-blue-400 text-xl">ℹ️</span>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm text-blue-800">
+                  Come studente non hai bisogno di una password! Potrai accedere con la sola email per vedere i tuoi punteggi e la classifica.
+                </p>
+              </div>
+            </div>
           </div>
         {/if}
       </div>
