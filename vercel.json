@@ -5,8 +5,6 @@
     }
   },
   "env": {
-    "DATABASE_URL": "@database_url",
-    "AUTH_SECRET": "@auth_secret",
     "NODE_ENV": "production"
   }
 }
