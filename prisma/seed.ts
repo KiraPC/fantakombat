@@ -55,7 +55,18 @@ async function main() {
     console.log('✅ Student created:', student.email);
   }
 
-  // Create actions
+  // Create a course
+  const course = await prisma.course.create({
+    data: {
+      name: 'Fit&Box Advanced',
+      description: 'Corso avanzato di Fit&Box per atleti esperti',
+      ownerId: teacher.id,
+    },
+  });
+
+  console.log('✅ Course created:', course.name);
+
+  // Create actions for the course
   const actions = [
     { name: 'Presenza puntuale', points: 10, type: 'BONUS' },
     { name: 'Ottima performance', points: 15, type: 'BONUS' },
@@ -69,27 +80,22 @@ async function main() {
 
   for (const action of actions) {
     await prisma.action.upsert({
-      where: { name: action.name },
+      where: { 
+        courseId_name: {
+          courseId: course.id,
+          name: action.name
+        }
+      },
       update: {},
       create: {
         name: action.name,
         points: action.points,
         type: action.type as 'BONUS' | 'MALUS',
+        courseId: course.id,
       },
     });
     console.log('✅ Action created:', action.name);
   }
-
-  // Create a course
-  const course = await prisma.course.create({
-    data: {
-      name: 'Fit&Box Advanced',
-      description: 'Corso avanzato di Fit&Box per atleti esperti',
-      ownerId: teacher.id,
-    },
-  });
-
-  console.log('✅ Course created:', course.name);
 
   // Create academic year
   const academicYear = await prisma.academicYear.create({

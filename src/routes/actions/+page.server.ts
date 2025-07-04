@@ -12,11 +12,34 @@ export const load: PageServerLoad = async ({ locals }) => {
   }
 
   try {
-    const actions = await db.action.findMany({
-      orderBy: {
-        createdAt: 'desc'
-      }
-    });
+    const [actions, courses] = await Promise.all([
+      db.action.findMany({
+        where: {
+          course: {
+            ownerId: locals.user.id
+          }
+        },
+        include: {
+          course: {
+            select: {
+              name: true
+            }
+          }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      }),
+      db.course.findMany({
+        where: {
+          ownerId: locals.user.id,
+          isActive: true
+        },
+        orderBy: {
+          name: 'asc'
+        }
+      })
+    ]);
 
     return {
       actions: actions.map(action => ({
@@ -24,7 +47,12 @@ export const load: PageServerLoad = async ({ locals }) => {
         name: action.name,
         points: action.points,
         type: action.type,
+        courseName: action.course.name,
         createdAt: action.createdAt.toISOString()
+      })),
+      courses: courses.map(course => ({
+        id: course.id,
+        name: course.name
       }))
     };
   } catch (err) {
@@ -43,6 +71,7 @@ export const actions: Actions = {
     const name = data.get('name') as string;
     const points = parseInt(data.get('points') as string);
     const type = data.get('type') as 'BONUS' | 'MALUS';
+    const courseId = data.get('courseId') as string;
 
     // Validation
     if (!name || name.trim().length === 0) {
@@ -57,6 +86,22 @@ export const actions: Actions = {
       return fail(400, { message: 'Il tipo deve essere BONUS o MALUS' });
     }
 
+    if (!courseId) {
+      return fail(400, { message: 'Il corso è obbligatorio' });
+    }
+
+    // Verify the course belongs to the teacher
+    const course = await db.course.findFirst({
+      where: {
+        id: courseId,
+        ownerId: locals.user.id
+      }
+    });
+
+    if (!course) {
+      return fail(400, { message: 'Corso non valido' });
+    }
+
     // For MALUS, ensure points are negative
     const finalPoints = type === 'MALUS' ? -Math.abs(points) : Math.abs(points);
 
@@ -65,7 +110,8 @@ export const actions: Actions = {
         data: {
           name: name.trim(),
           points: finalPoints,
-          type
+          type,
+          courseId
         }
       });
 

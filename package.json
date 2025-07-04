@@ -18,7 +18,7 @@
 		"deploy": "vercel --prod",
 		"prebuild": "prisma generate",
 		"postbuild": "prisma generate",
-		"vercel-build": "prisma generate && npm run build"
+		"vercel-build": "prisma generate && prisma migrate deploy && npm run build"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",

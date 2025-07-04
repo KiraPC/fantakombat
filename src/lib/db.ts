@@ -80,6 +80,7 @@ export async function createAction(data: {
   description?: string;
   points: number;
   type: 'BONUS' | 'MALUS';
+  courseId: string;
 }) {
   return db.action.create({
     data,

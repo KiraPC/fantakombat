@@ -15,12 +15,14 @@
   let name = '';
   let points = 0;
   let type = 'BONUS';
+  let courseId = '';
   
   // Reset form
   function resetForm() {
     name = '';
     points = 0;
     type = 'BONUS';
+    courseId = '';
     editingAction = null;
     showCreateForm = false;
   }
@@ -177,6 +179,24 @@
               </div>
               
               <div>
+                <label for="courseId" class="block text-sm font-medium text-gray-700">
+                  Corso
+                </label>
+                <select
+                  id="courseId"
+                  name="courseId"
+                  bind:value={courseId}
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+                >
+                  <option value="">Seleziona un corso</option>
+                  {#each data.courses as course}
+                    <option value={course.id}>{course.name}</option>
+                  {/each}
+                </select>
+              </div>
+              
+              <div>
                 <label for="points" class="block text-sm font-medium text-gray-700">
                   Punti
                 </label>
@@ -249,6 +269,9 @@
                     Nome
                   </th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Corso
+                  </th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Tipo
                   </th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -268,6 +291,11 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="text-sm font-medium text-gray-900">
                         {action.name}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-500">
+                        {action.courseName}
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
