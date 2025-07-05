@@ -73,7 +73,7 @@
                   {isTeacher ? 'Punti Totali Assegnati' : 'I Tuoi Punti'}
                 </dt>
                 <dd class="text-lg font-medium text-gray-900">
-                  {userStats.totalPoints || 0}
+                  {(userStats.totalPoints || 0).toFixed(1).replace('.0', '')}
                 </dd>
               </dl>
             </div>
@@ -163,7 +163,7 @@
                     </div>
                   </div>
                   <div class="text-sm font-medium text-gray-900">
-                    {entry.totalPoints} punti
+                    {entry.totalPoints.toFixed(1).replace('.0', '')} punti
                   </div>
                 </div>
               {/each}

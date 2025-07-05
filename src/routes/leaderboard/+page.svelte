@@ -101,7 +101,7 @@
                 <!-- Points -->
                 <div class="text-right">
                   <p class="text-2xl font-bold text-gray-900">
-                    {entry.totalPoints}
+                    {entry.totalPoints.toFixed(1).replace('.0', '')}
                   </p>
                   <p class="text-sm text-gray-600">
                     punti
@@ -125,7 +125,7 @@
               
               <div class="text-center">
                 <p class="text-2xl font-bold text-gray-900">
-                  {leaderboard[0]?.totalPoints || 0}
+                  {(leaderboard[0]?.totalPoints || 0).toFixed(1).replace('.0', '')}
                 </p>
                 <p class="text-sm text-gray-600">
                   Punteggio massimo
@@ -134,7 +134,7 @@
               
               <div class="text-center">
                 <p class="text-2xl font-bold text-gray-900">
-                  {Math.round(leaderboard.reduce((sum: number, entry: any) => sum + entry.totalPoints, 0) / leaderboard.length) || 0}
+                  {(leaderboard.reduce((sum: number, entry: any) => sum + entry.totalPoints, 0) / leaderboard.length || 0).toFixed(1).replace('.0', '')}
                 </p>
                 <p class="text-sm text-gray-600">
                   Punteggio medio

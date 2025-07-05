@@ -202,7 +202,7 @@
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-center">
                     <div class="text-lg font-bold text-gray-900">
-                      {user.totalPoints}
+                      {user.totalPoints.toFixed(1).replace('.0', '')}
                     </div>
                     <div class="text-sm text-gray-500">
                       punti
@@ -246,7 +246,7 @@
                   Le tue statistiche
                 </h3>
                 <p class="text-blue-700">
-                  Sei al {currentUserRank.position}° posto con {currentUserRank.totalPoints} punti
+                  Sei al {currentUserRank.position}° posto con {currentUserRank.totalPoints.toFixed(1).replace('.0', '')} punti
                 </p>
               </div>
               <div class="text-right">
@@ -259,7 +259,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
               <div class="bg-white rounded-lg p-4">
                 <div class="text-2xl font-bold text-blue-600">
-                  {currentUserRank.totalPoints}
+                  {currentUserRank.totalPoints.toFixed(1).replace('.0', '')}
                 </div>
                 <div class="text-sm text-gray-600">Punti totali</div>
               </div>

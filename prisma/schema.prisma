@@ -91,7 +91,7 @@ model Action {
   id          String     @id @default(cuid())
   name        String
   description String?
-  points      Int
+  points      Float
   type        ActionType
   courseId    String
   isActive    Boolean    @default(true)
@@ -126,7 +126,7 @@ model Score {
   actionId   String
   lessonId   String
   assignedBy String
-  points     Int
+  points     Float
   notes      String?
   createdAt  DateTime @default(now())
   assigner   User     @relation("AssignedBy", fields: [assignedBy], references: [id], onDelete: Cascade)

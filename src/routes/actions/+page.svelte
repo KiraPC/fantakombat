@@ -205,10 +205,11 @@
                   name="points"
                   type="number"
                   bind:value={points}
-                  min="1"
+                  min="0.1"
+                  step="0.1"
                   required
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                  placeholder="es. 10"
+                  placeholder="es. 1, 0.5, 1.5"
                 />
                 <p class="mt-1 text-xs text-gray-500">
                   {type === 'MALUS' ? 'I punti saranno automaticamente negativi' : 'I punti saranno positivi'}
@@ -305,7 +306,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="text-sm text-gray-900 font-medium">
-                        {action.points > 0 ? '+' : ''}{action.points}
+                        {action.points > 0 ? '+' : ''}{action.points.toFixed(1).replace('.0', '')}
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

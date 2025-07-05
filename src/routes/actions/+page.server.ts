@@ -69,7 +69,7 @@ export const actions: Actions = {
 
     const data = await request.formData();
     const name = data.get('name') as string;
-    const points = parseInt(data.get('points') as string);
+    const points = parseFloat(data.get('points') as string);
     const type = data.get('type') as 'BONUS' | 'MALUS';
     const courseId = data.get('courseId') as string;
 
@@ -130,7 +130,7 @@ export const actions: Actions = {
     const data = await request.formData();
     const id = data.get('id') as string;
     const name = data.get('name') as string;
-    const points = parseInt(data.get('points') as string);
+    const points = parseFloat(data.get('points') as string);
     const type = data.get('type') as 'BONUS' | 'MALUS';
 
     // Validation
