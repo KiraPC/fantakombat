@@ -230,15 +230,5 @@
         </div>
       </form>
     {/if}
-
-    <!-- Register Link -->
-    <div class="text-center mt-6">
-      <p class="text-sm text-gray-600">
-        Non hai un account?
-        <a href="/register" class="font-medium text-primary-600 hover:text-primary-500">
-          Registrati qui
-        </a>
-      </p>
-    </div>
   </div>
 </div>
