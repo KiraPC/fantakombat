@@ -1,6 +1,7 @@
 <!-- Login page for Fantakombat -->
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import { _, isLoading } from 'svelte-i18n';
   import type { SubmitFunction } from '@sveltejs/kit';
   
   export let form: any;
@@ -23,12 +24,27 @@
     password = '';
     loginMode = 'choose';
   }
+  
+  // Safe translate function that provides fallbacks
+  function t(key: string, fallback: string): string {
+    if ($isLoading) return fallback;
+    return $_(key, { default: fallback });
+  }
 </script>
 
 <svelte:head>
-  <title>Accedi - Fantakombat</title>
+  <title>{t('auth.login', 'Accedi')} - {t('app.title', 'FantaKombat')}</title>
 </svelte:head>
 
+<!-- Show loading state while translations are loading -->
+{#if $isLoading}
+  <div class="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-600"></div>
+      <p class="mt-4 text-gray-600">Caricamento...</p>
+    </div>
+  </div>
+{:else}
 <div class="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
     <!-- Header -->
@@ -39,15 +55,15 @@
         </div>
       </div>
       <h2 class="text-3xl font-bold text-gray-900">
-        Accedi a Fantakombat
+        {t('auth.loginTitle', 'Accedi a FantaKombat')}
       </h2>
       <p class="mt-2 text-sm text-gray-600">
         {#if loginMode === 'choose'}
-          Scegli il tuo tipo di accesso
+          {t('auth.chooseAccessType', 'Scegli il tipo di accesso')}
         {:else if loginMode === 'teacher'}
-          Accesso Insegnante
+          {t('auth.teacherAccess', 'Accesso Insegnante')}
         {:else}
-          Accesso Studente
+          {t('auth.studentAccess', 'Accesso Studente')}
         {/if}
       </p>
     </div>
@@ -77,7 +93,7 @@
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <span class="text-xl">👨‍🏫</span>
             </span>
-            Sono un Insegnante
+            {t('auth.imTeacher', 'Sono un Insegnante')}
           </button>
           
           <button
@@ -87,7 +103,7 @@
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <span class="text-xl">👨‍🎓</span>
             </span>
-            Sono uno Studente
+            {t('auth.imStudent', 'Sono uno Studente')}
           </button>
         </div>
       </div>
@@ -105,7 +121,7 @@
           <!-- Email Field -->
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">
-              Email
+              {t('forms.email', 'Email')}
             </label>
             <input
               id="email"
@@ -115,14 +131,14 @@
               required
               bind:value={email}
               class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-              placeholder="La tua email"
+              placeholder={t('forms.placeholders.email', 'La tua email')}
             />
           </div>
 
           <!-- Password Field -->
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700">
-              Password
+              {t('forms.password', 'Password')}
             </label>
             <input
               id="password"
@@ -132,7 +148,7 @@
               required
               bind:value={password}
               class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-              placeholder="La tua password"
+              placeholder={t('forms.placeholders.password', 'La tua password')}
             />
           </div>
         </div>
@@ -143,7 +159,7 @@
             on:click={resetForm}
             class="text-sm text-gray-600 hover:text-gray-900"
           >
-            ← Torna indietro
+            ← {t('messages.goBack', 'Indietro')}
           </button>
         </div>
 
@@ -158,7 +174,7 @@
                 {loading ? '⏳' : '🔐'}
               </span>
             </span>
-            {loading ? 'Accesso in corso...' : 'Accedi come Insegnante'}
+            {loading ? t('auth.loginInProgress', 'Accesso in corso...') : t('auth.loginAsTeacher', 'Accedi come Insegnante')}
           </button>
         </div>
       </form>
@@ -176,7 +192,7 @@
           <!-- Email Field -->
           <div>
             <label for="student-email" class="block text-sm font-medium text-gray-700">
-              Email
+              {t('forms.email', 'Email')}
             </label>
             <input
               id="student-email"
@@ -186,7 +202,7 @@
               required
               bind:value={email}
               class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 focus:z-10 sm:text-sm"
-              placeholder="La tua email"
+              placeholder={t('forms.placeholders.email', 'La tua email')}
             />
           </div>
         </div>
@@ -198,7 +214,7 @@
             </div>
             <div class="ml-3">
               <p class="text-sm text-blue-800">
-                Come studente, ti basta inserire la tua email per accedere e vedere la tua classifica e i tuoi punti!
+                {t('messages.studentLoginInfo', 'Gli studenti accedono utilizzando solo la loro email. Non è necessaria una password.')}
               </p>
             </div>
           </div>
@@ -210,7 +226,7 @@
             on:click={resetForm}
             class="text-sm text-gray-600 hover:text-gray-900"
           >
-            ← Torna indietro
+            ← {t('messages.goBack', 'Indietro')}
           </button>
         </div>
 
@@ -225,10 +241,11 @@
                 {loading ? '⏳' : '🎯'}
               </span>
             </span>
-            {loading ? 'Accesso in corso...' : 'Accedi come Studente'}
+            {loading ? t('auth.loginInProgress', 'Accesso in corso...') : t('auth.loginAsStudent', 'Accedi come Studente')}
           </button>
         </div>
       </form>
     {/if}
   </div>
 </div>
+{/if}

@@ -1,5 +1,7 @@
 <!-- Dashboard page for Fantakombat -->
 <script lang="ts">
+  import { _, isLoading } from 'svelte-i18n';
+  
   export let data;
   
   $: user = data.user;
@@ -7,6 +9,12 @@
   $: leaderboard = data.leaderboard || [];
   $: recentActivity = data.recentActivity || [];
   $: userStats = data.userStats || {};
+  
+  // Safe translate function that provides fallbacks
+  function t(key: string, fallback: string): string {
+    if ($isLoading) return fallback;
+    return $_(key, { default: fallback });
+  }
   
   // Format date for display
   function formatDate(dateString: string) {
@@ -32,9 +40,17 @@
 </script>
 
 <svelte:head>
-  <title>Dashboard - Fantakombat</title>
+  <title>{t('dashboard.title', 'Dashboard')} - {t('app.title', 'FantaKombat')}</title>
 </svelte:head>
 
+{#if $isLoading}
+  <div class="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-600"></div>
+      <p class="mt-4 text-gray-600">Caricamento...</p>
+    </div>
+  </div>
+{:else}
 <div class="min-h-screen bg-gray-50">
   <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
     <!-- Header -->
@@ -42,15 +58,15 @@
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 class="text-3xl font-bold text-gray-900">
-            Bentornato, {user.name}! 👋
+            {t('dashboard.welcomeBack', `Bentornato, ${user.name}!`)}
           </h1>
           <p class="mt-1 text-sm text-gray-600">
-            Ecco un riepilogo delle tue attività recenti
+            {t('dashboard.recentActivities', 'Ecco le tue attività recenti')}
           </p>
         </div>
         <div class="mt-4 sm:mt-0">
           <span class="badge {isTeacher ? 'badge-blue' : 'badge-green'} text-lg px-4 py-2">
-            {isTeacher ? '👨‍🏫 Insegnante' : '🥊 Iscritto'}
+            {isTeacher ? t('roles.teacher', 'Insegnante') : t('roles.student', 'Studente')}
           </span>
         </div>
       </div>
@@ -70,7 +86,7 @@
             <div class="ml-5 w-0 flex-1">
               <dl>
                 <dt class="text-sm font-medium text-gray-500 truncate">
-                  {isTeacher ? 'Punti Totali Assegnati' : 'I Tuoi Punti'}
+                  {isTeacher ? t('dashboard.totalPointsAssigned', 'Punti Totali Assegnati') : t('dashboard.yourPoints', 'I Tuoi Punti')}
                 </dt>
                 <dd class="text-lg font-medium text-gray-900">
                   {(userStats.totalPoints || 0).toFixed(1).replace('.0', '')}
@@ -92,7 +108,7 @@
               <div class="ml-5 w-0 flex-1">
                 <dl>
                   <dt class="text-sm font-medium text-gray-500 truncate">
-                    Posizione in Classifica
+                    {t('dashboard.leaderboardPosition', 'Posizione in Classifica')}
                   </dt>
                   <dd class="text-lg font-medium text-gray-900">
                     #{userStats.position || 'N/A'}
@@ -114,7 +130,7 @@
             <div class="ml-5 w-0 flex-1">
               <dl>
                 <dt class="text-sm font-medium text-gray-500 truncate">
-                  Attività Recenti
+                  {t('dashboard.recentActivities', 'Attività Recenti')}
                 </dt>
                 <dd class="text-lg font-medium text-gray-900">
                   {recentActivity.length}
@@ -133,13 +149,13 @@
         <div class="card">
           <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-semibold text-gray-900">
-              🏆 Classifica
+              🏆 {t('dashboard.leaderboard', 'Classifica')}
             </h2>
             <a 
               href="/leaderboard" 
               class="text-sm text-primary-600 hover:text-primary-500 font-medium"
             >
-              Vedi tutto →
+              {t('common.seeAll', 'Vedi tutto')} →
             </a>
           </div>
           
@@ -158,12 +174,12 @@
                         {entry.user.name}
                       </p>
                       {#if entry.user.id === user.id}
-                        <p class="text-xs text-primary-600">Tu</p>
+                        <p class="text-xs text-primary-600">{t('common.you', 'Tu')}</p>
                       {/if}
                     </div>
                   </div>
                   <div class="text-sm font-medium text-gray-900">
-                    {entry.totalPoints.toFixed(1).replace('.0', '')} punti
+                    {entry.totalPoints.toFixed(1).replace('.0', '')} {t('common.points', 'punti')}
                   </div>
                 </div>
               {/each}
@@ -171,7 +187,7 @@
           {:else}
             <div class="text-center py-8 text-gray-500">
               <span class="text-4xl mb-2 block">🏆</span>
-              <p>Nessun dato disponibile</p>
+              <p>{t('common.noDataAvailable', 'Nessun dato disponibile')}</p>
             </div>
           {/if}
         </div>
@@ -180,14 +196,14 @@
         <div class="card">
           <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-semibold text-gray-900">
-              ⚡ Attività Recenti
+              ⚡ {t('dashboard.recentActivity', 'Attività Recenti')}
             </h2>
             {#if isTeacher}
               <a 
                 href="/lessons" 
                 class="text-sm text-primary-600 hover:text-primary-500 font-medium"
               >
-                Gestisci lezioni →
+                {t('dashboard.manageLessons', 'Gestisci lezioni')} →
               </a>
             {/if}
           </div>
@@ -208,7 +224,7 @@
                     <p class="text-sm text-gray-600">
                       {activity.action.name}
                       <span class="font-medium">
-                        {activity.points > 0 ? '+' : ''}{activity.points} punti
+                        {activity.points > 0 ? '+' : ''}{activity.points} {t('common.points', 'punti')}
                       </span>
                     </p>
                     <p class="text-xs text-gray-500 mt-1">
@@ -221,7 +237,7 @@
           {:else}
             <div class="text-center py-8 text-gray-500">
               <span class="text-4xl mb-2 block">⚡</span>
-              <p>Nessuna attività recente</p>
+              <p>{t('dashboard.noRecentActivity', 'Nessuna attività recente')}</p>
             </div>
           {/if}
         </div>
@@ -232,7 +248,7 @@
     <div class="px-4 py-6 sm:px-0">
       <div class="card">
         <h2 class="text-xl font-semibold text-gray-900 mb-6">
-          🚀 Azioni Rapide
+          🚀 {t('dashboard.quickActions', 'Azioni Rapide')}
         </h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -242,8 +258,8 @@
           >
             <span class="text-2xl">🏆</span>
             <div>
-              <p class="text-sm font-medium text-gray-900">Classifica</p>
-              <p class="text-xs text-gray-600">Vedi posizioni</p>
+              <p class="text-sm font-medium text-gray-900">{t('nav.leaderboard', 'Classifica')}</p>
+              <p class="text-xs text-gray-600">{t('dashboard.seePositions', 'Vedi posizioni')}</p>
             </div>
           </a>
           
@@ -253,8 +269,8 @@
           >
             <span class="text-2xl">👤</span>
             <div>
-              <p class="text-sm font-medium text-gray-900">Profilo</p>
-              <p class="text-xs text-gray-600">Gestisci account</p>
+              <p class="text-sm font-medium text-gray-900">{t('nav.profile', 'Profilo')}</p>
+              <p class="text-xs text-gray-600">{t('dashboard.manageAccount', 'Gestisci account')}</p>
             </div>
           </a>
           
@@ -265,8 +281,8 @@
             >
               <span class="text-2xl">⚡</span>
               <div>
-                <p class="text-sm font-medium text-gray-900">Azioni</p>
-                <p class="text-xs text-gray-600">Gestisci bonus/malus</p>
+                <p class="text-sm font-medium text-gray-900">{t('nav.actions', 'Azioni')}</p>
+                <p class="text-xs text-gray-600">{t('dashboard.manageBonusMalus', 'Gestisci bonus/malus')}</p>
               </div>
             </a>
             
@@ -276,8 +292,8 @@
             >
               <span class="text-2xl">📚</span>
               <div>
-                <p class="text-sm font-medium text-gray-900">Lezioni</p>
-                <p class="text-xs text-gray-600">Gestisci lezioni</p>
+                <p class="text-sm font-medium text-gray-900">{t('nav.lessons', 'Lezioni')}</p>
+                <p class="text-xs text-gray-600">{t('dashboard.manageLessons', 'Gestisci lezioni')}</p>
               </div>
             </a>
             
@@ -287,8 +303,8 @@
             >
               <span class="text-2xl">👥</span>
               <div>
-                <p class="text-sm font-medium text-gray-900">Utenti</p>
-                <p class="text-xs text-gray-600">Gestisci iscritti</p>
+                <p class="text-sm font-medium text-gray-900">{t('nav.users', 'Utenti')}</p>
+                <p class="text-xs text-gray-600">{t('dashboard.manageUsers', 'Gestisci iscritti')}</p>
               </div>
             </a>
           {/if}
@@ -297,3 +313,4 @@
     </div>
   </div>
 </div>
+{/if}

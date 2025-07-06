@@ -1,6 +1,7 @@
 <!-- Profile page for Fantakombat -->
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import { _ } from 'svelte-i18n';
   import type { ActionData } from './$types';
   
   export let data;

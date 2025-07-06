@@ -1,0 +1,158 @@
+{
+  "app": {
+    "title": "Fantakombat",
+    "subtitle": "Fit&Box Game",
+    "description": "Una piattaforma di gamification per le lezioni di Fit&Box",
+    "tagline": "Rendi le tue lezioni di Fit&Box coinvolgenti e divertenti attraverso il gioco!"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "courses": "Corsi",
+    "lessons": "Lezioni",
+    "actions": "Azioni",
+    "users": "Utenti",
+    "rankings": "Classifiche",
+    "profile": "Profilo",
+    "leaderboard": "Classifica"
+  },
+  "auth": {
+    "login": "Accedi",
+    "register": "Registrati",
+    "logout": "Logout",
+    "loginTitle": "Accedi a FantaKombat",
+    "registerTitle": "Unisciti a FantaKombat",
+    "chooseAccessType": "Scegli il tipo di accesso",
+    "teacherAccess": "Accesso Insegnante",
+    "studentAccess": "Accesso Studente",
+    "imTeacher": "Sono un Insegnante",
+    "imStudent": "Sono uno Studente",
+    "createAccount": "Crea il tuo account e inizia a competere!",
+    "loginInProgress": "Accesso in corso...",
+    "loginAsStudent": "Accedi come Studente",
+    "loginAsTeacher": "Accedi come Insegnante"
+  },
+  "roles": {
+    "teacher": "Insegnante",
+    "student": "Studente"
+  },
+  "forms": {
+    "name": "Nome",
+    "fullName": "Nome completo",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "Nuova Password",
+    "currentPassword": "Password Attuale",
+    "confirmPassword": "Conferma password",
+    "role": "Ruolo",
+    "courseName": "Nome Corso",
+    "description": "Descrizione",
+    "date": "Data",
+    "title": "Titolo",
+    "startDate": "Data Inizio",
+    "endDate": "Data Fine",
+    "placeholders": {
+      "email": "La tua email",
+      "password": "La tua password",
+      "fullName": "Il tuo nome completo",
+      "choosePassword": "Scegli una password",
+      "repeatPassword": "Ripeti la password",
+      "courseName": "es. Corso Fit&Box Principianti",
+      "courseDescription": "Descrizione del corso...",
+      "lessonTitle": "es. Lezione di Boxe - Tecniche di base",
+      "lessonDescription": "Descrizione della lezione (opzionale)"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeBack": "Bentornato",
+    "recentActivities": "Attività Recenti",
+    "recentActivity": "Attività Recenti",
+    "leaderboard": "Classifica",
+    "quickActions": "Azioni Rapide",
+    "totalPointsAssigned": "Punti Totali Assegnati",
+    "yourPoints": "I Tuoi Punti",
+    "leaderboardPosition": "Posizione in Classifica",
+    "manageLessons": "Gestisci lezioni",
+    "manageAccount": "Gestisci account",
+    "manageBonusMalus": "Gestisci bonus/malus",
+    "manageUsers": "Gestisci iscritti",
+    "seePositions": "Vedi posizioni",
+    "noRecentActivity": "Nessuna attività recente",
+    "goToDashboard": "Vai alla Dashboard"
+  },
+  "common": {
+    "seeAll": "Vedi tutto",
+    "you": "Tu",
+    "points": "punti",
+    "noDataAvailable": "Nessun dato disponibile",
+    "openMenu": "Apri menu",
+    "featuresDescriptions": {
+      "leaderboard": "Visualizza le classifiche dei giocatori e sfida i tuoi amici!",
+      "actions": "Esegui azioni durante le lezioni e guadagna punti!",
+      "history": "Tieni traccia dei tuoi progressi nel tempo!"
+    },
+    "howItWorks": "Come Funziona",
+    "forTeachers": "Per gli Insegnanti",
+    "forStudents": "Per gli Studenti",
+    "teacherFeatures": {
+      "createActions": "Crea azioni e assegna punti",
+      "manageUsers": "Gestisci gli utenti",
+      "assignPoints": "Assegna bonus e malus",
+      "monitorProgress": "Monitora i progressi"
+    },
+    "studentFeatures": {
+      "viewLeaderboard": "Visualizza le classifiche",
+      "viewHistory": "Vedi la cronologia",
+      "trackProgress": "Traccia i progressi",
+      "competeWithOthers": "Compete con gli altri"
+    }
+  },
+  "greetings": {
+    "hello": "Ciao",
+    "welcomeUser": "Benvenuto"
+  },
+  "leaderboard": {
+    "viewLeaderboard": "Visualizza Classifica"
+  },
+  "messages": {
+    "welcome": "Bentornato",
+    "hello": "Ciao",
+    "noData": "Nessun dato disponibile",
+    "noLessons": "Nessuna lezione trovata",
+    "noScores": "Nessun punteggio assegnato",
+    "noCourses": "Nessun corso trovato",
+    "noResults": "Nessun risultato trovato",
+    "noActivity": "Nessuna attività recente",
+    "noStudents": "Nessuno studente iscritto",
+    "successOperation": "Operazione completata con successo",
+    "errorOccurred": "Si è verificato un errore",
+    "requiredField": "Campo obbligatorio",
+    "passwordMismatch": "Password non corrispondenti",
+    "createFirstLesson": "Crea la tua prima lezione per iniziare ad assegnare punti",
+    "createFirstCourse": "Crea il tuo primo corso per iniziare",
+    "startParticipating": "Inizia a partecipare alle lezioni per vedere la classifica!",
+    "contactTeacher": "Contatta il tuo insegnante per iscriverti",
+    "studentInfo": "Gli studenti non necessitano di password. Potranno accedere utilizzando solo l'email per visualizzare i loro punteggi.",
+    "studentLoginInfo": "Gli studenti accedono utilizzando solo la loro email. Non è necessaria una password.",
+    "courseInfo": "Questo sarà il nome del corso che creerai automaticamente",
+    "passwordMinLength": "La password deve essere lunga almeno 6 caratteri",
+    "goBack": "Indietro"
+  },
+  "stats": {
+    "points": "Punti",
+    "totalPoints": "Punti Totali",
+    "score": "Punteggio",
+    "position": "Posizione",
+    "activities": "Attività",
+    "lessons": "Lezioni",
+    "enrolledStudents": "Studenti Iscritti",
+    "assignedScores": "Punteggi Assegnati",
+    "totalLessons": "Lezioni Totali",
+    "totalScores": "Punteggi Totali",
+    "recentActivity": "Attività Recenti",
+    "scoreHistory": "Cronologia Punteggi",
+    "bonus": "Bonus",
+    "malus": "Malus",
+    "totalActivities": "Attività Totali"
+  }
+}
