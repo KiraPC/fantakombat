@@ -343,7 +343,6 @@
             <button
               type="submit"
               class="btn bg-red-600 text-white hover:bg-red-700"
-              on:click={() => deleteConfirmId = null}
             >
               Elimina
             </button>
