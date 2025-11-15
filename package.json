@@ -12,7 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"db:push": "prisma db push",
 		"db:studio": "prisma studio",
-		"db:seed": "tsx prisma/seed.ts",
+		"db:seed": "tsx prisma/seed_real.ts",
 		"db:generate": "prisma generate",
 		"db:migrate": "prisma migrate deploy",
 		"deploy": "vercel --prod",

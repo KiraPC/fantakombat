@@ -1,0 +1,335 @@
+{
+  "extraction_date": "2025-07-06T13:59:03.762231",
+  "file_name": "FantaKombat.xls",
+  "total_students": 37,
+  "total_lessons": 144,
+  "total_actions": 13,
+  "students": [
+    "Alessandra",
+    "Alessio",
+    "Alessio di Antonia",
+    "Antonella",
+    "Aurora",
+    "Camilla",
+    "Carola",
+    "Carolina",
+    "Claudia",
+    "Clelia",
+    "Elisabetta",
+    "Federica",
+    "Federico",
+    "Francesca",
+    "Maria Pia",
+    "Maria Teresa",
+    "Gaia",
+    "Giulietta",
+    "Giusy",
+    "Ilaria",
+    "Jacopo",
+    "Marco",
+    "Marianna",
+    "Miriam",
+    "Nico",
+    "Nino",
+    "Pasquale",
+    "Raffa",
+    "Roberta",
+    "Serena",
+    "Simone",
+    "Tatiana",
+    "Valentina",
+    "Valentina 2",
+    "Valerio",
+    "Valery",
+    "Virginia"
+  ],
+  "lessons": [
+    {
+      "lesson_number": 1,
+      "week_number": 34,
+      "day_number": 1,
+      "title": "Lezione 1",
+      "date": "2025-09-01T00:00:00"
+    },
+    {
+      "lesson_number": 2,
+      "week_number": 34,
+      "day_number": 3,
+      "title": "Lezione 2",
+      "date": "2025-09-03T00:00:00"
+    },
+    {
+      "lesson_number": 3,
+      "week_number": 34,
+      "day_number": 5,
+      "title": "Lezione 3",
+      "date": "2025-09-05T00:00:00"
+    },
+    {
+      "lesson_number": 4,
+      "week_number": 35,
+      "day_number": 1,
+      "title": "Lezione 4",
+      "date": "2025-09-08T00:00:00"
+    },
+    {
+      "lesson_number": 5,
+      "week_number": 35,
+      "day_number": 3,
+      "title": "Lezione 5",
+      "date": "2025-09-10T00:00:00"
+    },
+    {
+      "lesson_number": 6,
+      "week_number": 35,
+      "day_number": 5,
+      "title": "Lezione 6",
+      "date": "2025-09-12T00:00:00"
+    },
+    {
+      "lesson_number": 7,
+      "week_number": 36,
+      "day_number": 1,
+      "title": "Lezione 7",
+      "date": "2025-09-15T00:00:00"
+    },
+    {
+      "lesson_number": 8,
+      "week_number": 36,
+      "day_number": 3,
+      "title": "Lezione 8",
+      "date": "2025-09-17T00:00:00"
+    },
+    {
+      "lesson_number": 9,
+      "week_number": 36,
+      "day_number": 5,
+      "title": "Lezione 9",
+      "date": "2025-09-19T00:00:00"
+    },
+    {
+      "lesson_number": 10,
+      "week_number": 37,
+      "day_number": 1,
+      "title": "Lezione 10",
+      "date": "2025-09-22T00:00:00"
+    },
+    {
+      "lesson_number": 11,
+      "week_number": 37,
+      "day_number": 3,
+      "title": "Lezione 11",
+      "date": "2025-09-24T00:00:00"
+    },
+    {
+      "lesson_number": 12,
+      "week_number": 37,
+      "day_number": 5,
+      "title": "Lezione 12",
+      "date": "2025-09-26T00:00:00"
+    },
+    {
+      "lesson_number": 13,
+      "week_number": 38,
+      "day_number": 1,
+      "title": "Lezione 13",
+      "date": "2025-09-29T00:00:00"
+    },
+    {
+      "lesson_number": 14,
+      "week_number": 38,
+      "day_number": 3,
+      "title": "Lezione 14",
+      "date": "2025-10-01T00:00:00"
+    },
+    {
+      "lesson_number": 15,
+      "week_number": 38,
+      "day_number": 5,
+      "title": "Lezione 15",
+      "date": "2025-10-03T00:00:00"
+    },
+    {
+      "lesson_number": 16,
+      "week_number": 39,
+      "day_number": 1,
+      "title": "Lezione 16",
+      "date": "2025-10-06T00:00:00"
+    },
+    {
+      "lesson_number": 17,
+      "week_number": 39,
+      "day_number": 3,
+      "title": "Lezione 17",
+      "date": "2025-10-08T00:00:00"
+    },
+    {
+      "lesson_number": 18,
+      "week_number": 39,
+      "day_number": 5,
+      "title": "Lezione 18",
+      "date": "2025-10-10T00:00:00"
+    },
+    {
+      "lesson_number": 19,
+      "week_number": 40,
+      "day_number": 1,
+      "title": "Lezione 19",
+      "date": "2025-10-13T00:00:00"
+    },
+    {
+      "lesson_number": 20,
+      "week_number": 40,
+      "day_number": 3,
+      "title": "Lezione 20",
+      "date": "2025-10-15T00:00:00"
+    },
+    {
+      "lesson_number": 21,
+      "week_number": 40,
+      "day_number": 5,
+      "title": "Lezione 21",
+      "date": "2025-10-17T00:00:00"
+    },
+    {
+      "lesson_number": 22,
+      "week_number": 41,
+      "day_number": 1,
+      "title": "Lezione 22",
+      "date": "2025-10-20T00:00:00"
+    },
+    {
+      "lesson_number": 23,
+      "week_number": 41,
+      "day_number": 3,
+      "title": "Lezione 23",
+      "date": "2025-10-22T00:00:00"
+    },
+    {
+      "lesson_number": 24,
+      "week_number": 41,
+      "day_number": 5,
+      "title": "Lezione 24",
+      "date": "2025-10-24T00:00:00"
+    },
+    {
+      "lesson_number": 25,
+      "week_number": 42,
+      "day_number": 1,
+      "title": "Lezione 25",
+      "date": "2025-10-27T00:00:00"
+    },
+    {
+      "lesson_number": 26,
+      "week_number": 42,
+      "day_number": 3,
+      "title": "Lezione 26",
+      "date": "2025-10-29T00:00:00"
+    },
+    {
+      "lesson_number": 27,
+      "week_number": 42,
+      "day_number": 5,
+      "title": "Lezione 27",
+      "date": "2025-10-31T00:00:00"
+    },
+    {
+      "lesson_number": 28,
+      "week_number": 43,
+      "day_number": 1,
+      "title": "Lezione 28",
+      "date": "2025-11-03T00:00:00"
+    },
+    {
+      "lesson_number": 29,
+      "week_number": 43,
+      "day_number": 3,
+      "title": "Lezione 29",
+      "date": "2025-11-05T00:00:00"
+    },
+    {
+      "lesson_number": 30,
+      "week_number": 43,
+      "day_number": 5,
+      "title": "Lezione 30",
+      "date": "2025-11-07T00:00:00"
+    },
+    {
+      "lesson_number": 31,
+      "week_number": 44,
+      "day_number": 1,
+      "title": "Lezione 31",
+      "date": "2025-11-10T00:00:00"
+    },
+    {
+      "lesson_number": 32,
+      "week_number": 44,
+      "day_number": 3,
+      "title": "Lezione 32",
+      "date": "2025-11-12T00:00:00"
+    },
+    {
+      "lesson_number": 33,
+      "week_number": 44,
+      "day_number": 5,
+      "title": "Lezione 33",
+      "date": "2025-11-14T00:00:00"
+    },
+    {
+      "lesson_number": 34,
+      "week_number": 45,
+      "day_number": 1,
+      "title": "Lezione 34",
+      "date": "2025-11-17T00:00:00"
+    },
+    {
+      "lesson_number": 35,
+      "week_number": 45,
+      "day_number": 3,
+      "title": "Lezione 35",
+      "date": "2025-11-19T00:00:00"
+    },
+    {
+      "lesson_number": 36,
+      "week_number": 45,
+      "day_number": 5,
+      "title": "Lezione 36",
+      "date": "2025-11-21T00:00:00"
+    }
+  ],
+  "actions": [
+    {
+      "name": "Allenamento ottimale",
+      "points": 1.0
+    },
+    {
+      "name": "Sacco con Angy",
+      "points": 0.5
+    },
+    {
+      "name": "Footwork tutta la settimana",
+      "points": 0.5
+    },
+    {
+      "name": "Jolly notaio",
+      "points": 1.0
+    },
+    {
+      "name": "Ritardo Inizio Lezione",
+      "points": -0.5
+    },
+    {
+      "name": "Imbruttire ad Angy",
+      "points": -0.5
+    },
+    {
+      "name": "Non Urlo tutta la settimana",
+      "points": -0.5
+    },
+    {
+      "name": "Allenamento Schifoso",
+      "points": -0.5
+    }
+  ],
+  "student_scores": {}
+}

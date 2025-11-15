@@ -48,6 +48,7 @@ export const load: PageServerLoad = async ({ locals }) => {
         points: action.points,
         type: action.type,
         courseName: action.course.name,
+        isAutomatic: action.isAutomatic,
         createdAt: action.createdAt.toISOString()
       })),
       courses: courses.map(course => ({
@@ -183,6 +184,21 @@ export const actions: Actions = {
     }
 
     try {
+      // Check if action is automatic
+      const action = await db.action.findUnique({
+        where: { id }
+      });
+
+      if (!action) {
+        return fail(404, { message: 'Azione non trovata' });
+      }
+
+      if (action.isAutomatic) {
+        return fail(400, { 
+          message: 'Impossibile eliminare un\'azione automatica. Le azioni automatiche sono gestite dal sistema.' 
+        });
+      }
+
       // Check if action is used in any scores
       const scoresCount = await db.score.count({
         where: { actionId: id }

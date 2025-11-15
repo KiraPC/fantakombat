@@ -1,6 +1,10 @@
 // Authentication hooks for SvelteKit
 import { redirect, type Handle } from '@sveltejs/kit';
 import { getSession, type AuthSession } from '$lib/auth';
+import { initializeAutomaticActions } from '$lib/init-actions';
+
+// Initialize automatic actions on server start
+initializeAutomaticActions();
 
 // Define which routes require authentication and specific roles
 const protectedRoutes = {

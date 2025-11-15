@@ -1,0 +1,51 @@
+================================================================================
+REPORT ESTRAZIONE DATI FANTAKOMBAT - CORRETTI DAL FOGLIO TOTALE
+================================================================================
+Data estrazione: 2025-07-06T13:59:03.762231
+File sorgente: FantaKombat.xls
+
+STATISTICHE GENERALI:
+- Studenti totali: 37
+- Lezioni totali: 75
+- Azioni totali: 13
+
+TOTALI PER STUDENTE:
+- Alessandra: 10.0 punti
+- Alessio: -71.5 punti
+- Alessio ( di Antonia): 74.5 punti
+- Antonella: 90.5 punti
+- Aurora: 11.0 punti
+- Camilla: 14.5 punti
+- Carola: -18.5 punti
+- Carolina: -45.5 punti
+- Claudia: -67.0 punti
+- Clelia: 68.0 punti
+- Elisabetta: -36.0 punti
+- Federica: 91.0 punti
+- Federico: -33.5 punti
+- Francesca: 92.5 punti
+- Maria Pia: -78.0 punti
+- Maria Teresa: -38.5 punti
+- Gaia: 40.0 punti
+- Giulietta: 24.5 punti
+- Giusy: -66.5 punti
+- Ilaria: -48.0 punti
+- Jacopo: -32.0 punti
+- Marco: -65.0 punti
+- Marianna: -39.5 punti
+- Miriam: -53.0 punti
+- Nico: -41.5 punti
+- Nino: -78.0 punti
+- Pasquale: 4.0 punti
+- Raffa: 114.5 punti
+- Roberta: -41.0 punti
+- Serena: 3.5 punti
+- Simone: -78.0 punti
+- Tatiana: -56.0 punti
+- Valentina: 115.0 punti
+- Valentina 2: 17.0 punti
+- Valerio: -63.5 punti
+- Valery: 16.0 punti
+- Virginia: -1.0 punti
+
+================================================================================
