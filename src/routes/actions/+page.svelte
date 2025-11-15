@@ -305,27 +305,45 @@
                       </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900 font-medium">
-                        {action.points > 0 ? '+' : ''}{action.points.toFixed(1).replace('.0', '')}
-                      </div>
+                      {#if action.isAutomatic && (action.name.includes('Consecutive') || action.name.includes('consecutive'))}
+                        <div class="text-sm text-gray-900">
+                          <span class="font-medium">Automatico</span>
+                          <div class="text-xs text-gray-500 mt-1">
+                            {#if action.type === 'BONUS'}
+                              +0.5 ogni 3 presenze
+                            {:else}
+                              -0.5 a -2.0 (cap)
+                            {/if}
+                          </div>
+                        </div>
+                      {:else}
+                        <div class="text-sm text-gray-900 font-medium">
+                          {action.points > 0 ? '+' : ''}{action.points.toFixed(1).replace('.0', '')}
+                        </div>
+                      {/if}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {formatDate(action.createdAt)}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <div class="flex justify-end space-x-2">
+                      <div class="flex justify-end space-x-2 items-center">
+                        {#if action.isAutomatic}
+                          <span class="text-xs text-gray-500 italic mr-2">🤖 Automatica</span>
+                        {/if}
                         <button
                           on:click={() => handleEdit(action)}
                           class="text-primary-600 hover:text-primary-900"
                         >
                           ✏️ Modifica
                         </button>
-                        <button
-                          on:click={() => deleteConfirmId = action.id}
-                          class="text-red-600 hover:text-red-900"
-                        >
-                          🗑️ Elimina
-                        </button>
+                        {#if !action.isAutomatic}
+                          <button
+                            on:click={() => deleteConfirmId = action.id}
+                            class="text-red-600 hover:text-red-900"
+                          >
+                            🗑️ Elimina
+                          </button>
+                        {/if}
                       </div>
                     </td>
                   </tr>

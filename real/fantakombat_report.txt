@@ -1,0 +1,116 @@
+================================================================================
+REPORT ESTRAZIONE DATI FANTAKOMBAT - COMPLETO
+================================================================================
+Data estrazione: 2025-07-06T13:13:37.367640
+File sorgente: FantaKombat.xls
+
+STATISTICHE GENERALI:
+- Studenti totali: 37
+- Lezioni totali: 75
+- Azioni totali: 12
+
+ELENCO STUDENTI:
+ 1. Alessandra
+ 2. Alessio
+ 3. Alessio ( di Antonia)
+ 4. Antonella
+ 5. Aurora
+ 6. Camilla
+ 7. Carola
+ 8. Carolina
+ 9. Claudia
+10. Clelia
+11. Elisabetta
+12. Federica
+13. Federico
+14. Francesca
+15. Gaia
+16. Giulietta
+17. Giusy
+18. Ilaria
+19. Jacopo
+20. Marco
+21. Maria Pia
+22. Maria Teresa
+23. Marianna
+24. Miriam
+25. Nico
+26. Nino
+27. Pasquale
+28. Raffa
+29. Roberta
+30. Serena
+31. Simone
+32. Tatiana
+33. Valentina
+34. Valentina 2
+35. Valerio
+36. Valery
+37. Virginia
+
+ELENCO AZIONI:
+ 1. Presenza (+1pt) (+1.0 punti)
+ 2. Assenza (-0,5pt) (-0.5 punti)
+ 3. Allenamento ottimale(+1pt) (+1.0 punti)
+ 4. Sacco con Angy (+0,5pt) (+0.5 punti)
+ 5. Footwork tutta la settimana (+0,5pt) (+0.5 punti)
+ 6. Punti extra settimana (+0,5pt dopo 1 settimana di presenza) (+1pt dopo 2 settimana di presenza) (+2pt dopo 3 settimana di presenza) (+3pt dopo 4 settimana di presenza) (+0.5 punti)
+ 7. Jolly notaio (+1pt dal mese) (+1.0 punti)
+ 8. Ritardo Inizio Lezione  (-0,5pt) (-0.5 punti)
+ 9. Imbruttire ad Angy (-0,5pt) (-0.5 punti)
+10. Non Urlo tutta la settimana (-0,5pt) (-0.5 punti)
+11. Allenamento Schifoso(-0,5pt) (-0.5 punti)
+12. Punti extra settimana (-0,5pt dopo 1settimana di seguito) (-1pt dopo 2 settimane di seguito) (-1,5pt dopo 3 settimane di seguito) (-2pt dopo 4 settimane di seguito) (-0.5 punti)
+
+STATISTICHE PER STUDENTE:
+- Alessio: -109.5 punti totali, 75 lezioni, -1.5 punti/lezione
+- Alessio ( di Antonia): 64.5 punti totali, 75 lezioni, 0.9 punti/lezione
+- Antonella: 66.0 punti totali, 75 lezioni, 0.9 punti/lezione
+- Aurora: 7.5 punti totali, 75 lezioni, 0.1 punti/lezione
+- Camilla: 6.0 punti totali, 75 lezioni, 0.1 punti/lezione
+- Carola: -22.5 punti totali, 75 lezioni, -0.3 punti/lezione
+- Carolina: -61.5 punti totali, 75 lezioni, -0.8 punti/lezione
+- Claudia: -103.5 punti totali, 75 lezioni, -1.4 punti/lezione
+- Elisabetta: -39.0 punti totali, 75 lezioni, -0.5 punti/lezione
+- Federica: 27.0 punti totali, 75 lezioni, 0.4 punti/lezione
+- Francesca: 79.5 punti totali, 75 lezioni, 1.1 punti/lezione
+- Maria Pia: -117.0 punti totali, 75 lezioni, -1.6 punti/lezione
+- Gaia: 24.0 punti totali, 75 lezioni, 0.3 punti/lezione
+- Giulietta: 24.0 punti totali, 75 lezioni, 0.3 punti/lezione
+- Giusy: -96.0 punti totali, 75 lezioni, -1.3 punti/lezione
+- Ilaria: -60.0 punti totali, 75 lezioni, -0.8 punti/lezione
+- Jacopo: -51.0 punti totali, 75 lezioni, -0.7 punti/lezione
+- Marco: -96.0 punti totali, 75 lezioni, -1.3 punti/lezione
+- Marianna: -46.5 punti totali, 75 lezioni, -0.6 punti/lezione
+- Miriam: -61.5 punti totali, 75 lezioni, -0.8 punti/lezione
+- Nico: -51.0 punti totali, 75 lezioni, -0.7 punti/lezione
+- Nino: -105.0 punti totali, 75 lezioni, -1.4 punti/lezione
+- Pasquale: 4.5 punti totali, 75 lezioni, 0.1 punti/lezione
+- Raffa: 97.5 punti totali, 75 lezioni, 1.3 punti/lezione
+- Roberta: -63.0 punti totali, 75 lezioni, -0.8 punti/lezione
+- Serena: -21.0 punti totali, 75 lezioni, -0.3 punti/lezione
+- Simone: -117.0 punti totali, 75 lezioni, -1.6 punti/lezione
+- Tatiana: -57.0 punti totali, 75 lezioni, -0.8 punti/lezione
+- Valentina: 105.0 punti totali, 75 lezioni, 1.4 punti/lezione
+- Valerio: -85.5 punti totali, 75 lezioni, -1.1 punti/lezione
+- Valery: 9.0 punti totali, 75 lezioni, 0.1 punti/lezione
+- Virginia: -12.0 punti totali, 75 lezioni, -0.2 punti/lezione
+- Clelia: 48.0 punti totali, 48 lezioni, 1.0 punti/lezione
+- Valentina 2: -3.0 punti totali, 48 lezioni, -0.1 punti/lezione
+- Alessandra: -3.0 punti totali, 45 lezioni, -0.1 punti/lezione
+- Federico: -46.5 punti totali, 45 lezioni, -1.0 punti/lezione
+- Maria Teresa: -46.5 punti totali, 45 lezioni, -1.0 punti/lezione
+
+DISTRIBUZIONE AZIONI:
+- Punti extra settimana (-0,5pt dopo 1settimana di seguito) (-1pt dopo 2 settimane di seguito) (-1,5pt dopo 3 settimane di seguito) (-2pt dopo 4 settimane di seguito): 1386 volte
+- Assenza (-0,5pt): 1047 volte
+- Presenza (+1pt): 546 volte
+- Allenamento ottimale(+1pt): 387 volte
+- Non Urlo tutta la settimana (-0,5pt): 360 volte
+- Punti extra settimana (+0,5pt dopo 1 settimana di presenza) (+1pt dopo 2 settimana di presenza) (+2pt dopo 3 settimana di presenza) (+3pt dopo 4 settimana di presenza): 342 volte
+- Sacco con Angy (+0,5pt): 30 volte
+- Footwork tutta la settimana (+0,5pt): 12 volte
+- Ritardo Inizio Lezione  (-0,5pt): 9 volte
+- Imbruttire ad Angy (-0,5pt): 3 volte
+
+================================================================================
