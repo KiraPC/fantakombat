@@ -259,14 +259,14 @@ export const actions: Actions = {
       const presenceAction = await db.action.findFirst({
         where: { 
           courseId: currentLesson.academicYear.courseId,
-          name: { contains: 'Presenza', mode: 'insensitive' }
+          actionCategory: 'SINGLE_PRESENCE'
         }
       });
 
       const absenceAction = await db.action.findFirst({
         where: { 
           courseId: currentLesson.academicYear.courseId,
-          name: { contains: 'Assenza', mode: 'insensitive' }
+          actionCategory: 'SINGLE_ABSENCE'
         }
       });
 
@@ -362,12 +362,11 @@ export const actions: Actions = {
           }
 
           if (bonusPoints > 0) {
-            // Cerca l'azione per bonus presenze consecutive
+            // Cerca l'azione automatica per bonus presenze consecutive
             const streakAction = await db.action.findFirst({
               where: {
                 courseId: currentLesson.academicYear.courseId,
-                name: 'Bonus Presenze Consecutive',
-                isAutomatic: true
+                actionCategory: 'STREAK_PRESENCE'
               }
             });
 
@@ -426,12 +425,11 @@ export const actions: Actions = {
           }
 
           if (malusPoints < 0) {
-            // Cerca l'azione per malus assenze consecutive
+            // Cerca l'azione automatica per malus assenze consecutive
             const streakAction = await db.action.findFirst({
               where: {
                 courseId: currentLesson.academicYear.courseId,
-                name: 'Malus Assenze Consecutive',
-                isAutomatic: true
+                actionCategory: 'STREAK_ABSENCE'
               }
             });
 

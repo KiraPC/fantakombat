@@ -115,6 +115,55 @@ async function main() {
 
   // Crea le azioni
   console.log('⚡ Creazione azioni...')
+  // Crea prima le azioni automatiche con categoria
+  console.log('⚙️  Creazione azioni automatiche...')
+  const automaticActions = [
+    {
+      name: 'Presenza',
+      points: 1.0,
+      type: 'BONUS' as const,
+      actionCategory: 'SINGLE_PRESENCE' as const,
+      isAutomatic: true
+    },
+    {
+      name: 'Assenza',
+      points: -0.5,
+      type: 'MALUS' as const,
+      actionCategory: 'SINGLE_ABSENCE' as const,
+      isAutomatic: true
+    },
+    {
+      name: 'Bonus Presenze Consecutive',
+      points: 0.5,
+      type: 'BONUS' as const,
+      actionCategory: 'STREAK_PRESENCE' as const,
+      isAutomatic: true
+    },
+    {
+      name: 'Malus Assenze Consecutive',
+      points: -0.5,
+      type: 'MALUS' as const,
+      actionCategory: 'STREAK_ABSENCE' as const,
+      isAutomatic: true
+    }
+  ]
+
+  await Promise.all(
+    automaticActions.map(async (actionData) => {
+      return await prisma.action.create({
+        data: {
+          name: actionData.name,
+          points: actionData.points,
+          courseId: course.id,
+          type: actionData.type,
+          actionCategory: actionData.actionCategory,
+          isAutomatic: actionData.isAutomatic
+        }
+      })
+    })
+  )
+
+  // Crea le azioni custom dal file
   const actions = await Promise.all(
     data.actions.map(async (actionData) => {
       return await prisma.action.create({
@@ -122,7 +171,8 @@ async function main() {
           name: actionData.name,
           points: actionData.points,
           courseId: course.id,
-          type: actionData.points >= 0 ? 'BONUS' : 'MALUS'
+          type: actionData.points >= 0 ? 'BONUS' : 'MALUS',
+          isAutomatic: false
         }
       })
     })

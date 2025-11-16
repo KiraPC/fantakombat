@@ -20,25 +20,29 @@ export async function initializeAutomaticActions() {
           name: 'Presenza',
           description: 'Punto presenza alla lezione (automatico)',
           points: 1.0,
-          type: 'BONUS' as const
+          type: 'BONUS' as const,
+          actionCategory: 'SINGLE_PRESENCE' as const
         },
         {
           name: 'Assenza',
           description: 'Penalità per assenza alla lezione (automatico)',
           points: -0.5,
-          type: 'MALUS' as const
+          type: 'MALUS' as const,
+          actionCategory: 'SINGLE_ABSENCE' as const
         },
         {
           name: 'Bonus Presenze Consecutive',
-          description: 'Bonus per presenze consecutive: +0.5 per 3+ lezioni, +1.0 per 6+ lezioni (automatico)',
+          description: 'Bonus per presenze consecutive: da +0.5 a +N ogni 3 lezioni (automatico)',
           points: 0.5,
-          type: 'BONUS' as const
+          type: 'BONUS' as const,
+          actionCategory: 'STREAK_PRESENCE' as const
         },
         {
           name: 'Malus Assenze Consecutive',
-          description: 'Malus per assenze consecutive: -0.5 per 3+ lezioni, -1.0 per 6+ lezioni (automatico)',
+          description: 'Malus per assenze consecutive: da -0.5 a -2.0 (cap) ogni 3 lezioni (automatico)',
           points: -0.5,
-          type: 'MALUS' as const
+          type: 'MALUS' as const,
+          actionCategory: 'STREAK_ABSENCE' as const
         }
       ];
 

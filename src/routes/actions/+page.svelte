@@ -305,14 +305,18 @@
                       </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      {#if action.isAutomatic && (action.name.includes('Consecutive') || action.name.includes('consecutive'))}
+                      {#if action.isAutomatic && action.actionCategory}
                         <div class="text-sm text-gray-900">
                           <span class="font-medium">Automatico</span>
                           <div class="text-xs text-gray-500 mt-1">
-                            {#if action.type === 'BONUS'}
-                              +0.5 ogni 3 presenze
-                            {:else}
-                              -0.5 a -2.0 (cap)
+                            {#if action.actionCategory === 'SINGLE_PRESENCE'}
+                              +1.0 per presenza
+                            {:else if action.actionCategory === 'SINGLE_ABSENCE'}
+                              -0.5 per assenza
+                            {:else if action.actionCategory === 'STREAK_PRESENCE'}
+                              +0.5 ogni 3 presenze consecutive
+                            {:else if action.actionCategory === 'STREAK_ABSENCE'}
+                              -0.5 → -2.0 (cap) per assenze consecutive
                             {/if}
                           </div>
                         </div>
