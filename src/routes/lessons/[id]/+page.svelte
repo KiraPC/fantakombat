@@ -532,7 +532,6 @@
             <button
               type="submit"
               class="btn bg-red-600 text-white hover:bg-red-700"
-              on:click={() => removeScoreConfirmId = null}
             >
               Rimuovi
             </button>

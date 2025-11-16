@@ -101,18 +101,19 @@ model AcademicYearEnrollment {
 
 // Action model - defines bonus/malus actions that affect points
 model Action {
-  id          String     @id @default(cuid())
-  name        String
-  description String?
-  points      Float
-  type        ActionType
-  courseId    String
-  isActive    Boolean    @default(true)
-  isAutomatic Boolean    @default(false)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  course      Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  scores      Score[]
+  id             String          @id @default(cuid())
+  name           String
+  description    String?
+  points         Float
+  type           ActionType
+  courseId       String
+  isActive       Boolean         @default(true)
+  isAutomatic    Boolean         @default(false)
+  actionCategory ActionCategory?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  course         Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  scores         Score[]
 
   @@unique([courseId, name])
   @@map("actions")
@@ -161,4 +162,11 @@ enum Role {
 enum ActionType {
   BONUS
   MALUS
+}
+
+enum ActionCategory {
+  SINGLE_PRESENCE      // Presenza singola (+1)
+  SINGLE_ABSENCE       // Assenza singola (-0.5)
+  STREAK_PRESENCE      // Bonus presenze consecutive (+0.5 ogni 3)
+  STREAK_ABSENCE       // Malus assenze consecutive (-0.5 a -2.0)
 }

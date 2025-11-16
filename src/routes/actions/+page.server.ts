@@ -19,7 +19,14 @@ export const load: PageServerLoad = async ({ locals }) => {
             ownerId: locals.user.id
           }
         },
-        include: {
+        select: {
+          id: true,
+          name: true,
+          points: true,
+          type: true,
+          isAutomatic: true,
+          actionCategory: true,
+          createdAt: true,
           course: {
             select: {
               name: true
@@ -49,6 +56,7 @@ export const load: PageServerLoad = async ({ locals }) => {
         type: action.type,
         courseName: action.course.name,
         isAutomatic: action.isAutomatic,
+        actionCategory: action.actionCategory,
         createdAt: action.createdAt.toISOString()
       })),
       courses: courses.map(course => ({
